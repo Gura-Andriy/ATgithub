@@ -47,7 +47,7 @@ public class MyDriver {
     }
 
     public void submit() {
-        //Submit
+        //Submit create repository
         driver.findElement(By.xpath("//*[@id=\"new_repository\"]/div[6]/button")).click();
     }
 
@@ -63,5 +63,9 @@ public class MyDriver {
         driver.findElement(By.xpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/p/input")).sendKeys(
                 driver.findElement(By.xpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/p[2]/strong")).getText());
         driver.findElement(By.xpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/button/span[1]")).click();
+    }
+
+    public void close() {
+        driver.close();
     }
 }

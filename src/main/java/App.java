@@ -16,5 +16,6 @@ public class App {
 
         driver.submitDelete();
 
+        driver.close();
     }
 }
