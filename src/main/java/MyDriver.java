@@ -6,11 +6,13 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class MyDriver {
     public final WebDriver driver;
     public final WebDriverWait wait;
+    Logging log = new Logging("log.txt");
 
     public MyDriver() {
         driver = new ChromeDriver();
@@ -34,6 +36,10 @@ public class MyDriver {
         driver.findElement(By.partialLinkText("Sign in")).click();
         driver.findElement(By.name("login")).sendKeys(username);
         driver.findElement(By.name("password")).sendKeys(password);
+
+
+//        log.writeLog(true, "log in");
+
     }
 
     public void createNewDirectory() {
