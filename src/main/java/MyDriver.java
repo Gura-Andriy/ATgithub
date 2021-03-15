@@ -73,7 +73,7 @@ public class MyDriver {
                 driver.findElement(By.xpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/p[2]/strong")).getText());
 
         submit("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/button/span[1]",
-                checkTextareaNotEmptyByName("verify"));
+                checkTextareaNotEmptyByXpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/p/input"));
     }
 
     public void close() {
@@ -85,13 +85,14 @@ public class MyDriver {
             else return true;
     }
 
-    public boolean checkTextareaNotEmptyByName(String name) {
-        if(driver.findElement(By.name(name)).getAttribute("value").isEmpty()) return false;
+    public boolean checkTextareaNotEmptyByXpath(String xpath) {
+        if(driver.findElement(By.xpath(xpath)).getAttribute("value").isEmpty()) return false;
         else return true;
     }
 
     public void writeText(String xpath, String text) {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+        driver.findElement(By.xpath(xpath)).clear();
         driver.findElement(By.xpath(xpath)).sendKeys(text);
     }
 }
