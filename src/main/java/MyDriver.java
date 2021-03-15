@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,15 +17,12 @@ public class MyDriver {
         driver.get("https://github.com");
     }
 
-    public void logIn() {
+    public void logIn(String username, String password) {
         //Log in
         wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText("Sign in")));
         driver.findElement(By.partialLinkText("Sign in")).click();
-        driver.findElement(By.name("login")).sendKeys(new LoginProperty().username);
-        driver.findElement(By.name("password")).sendKeys(new LoginProperty().password);
-
-        driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
-        driver.findElement(By.name("password")).submit();
+        driver.findElement(By.name("login")).sendKeys(username);
+        driver.findElement(By.name("password")).sendKeys(password);
     }
 
     public void createNewDirectory() {
@@ -32,23 +30,28 @@ public class MyDriver {
         driver.findElement(By.linkText("New")).click();
     }
 
-    public void setNameOfDirectory() {
-        //Enter name
+    public void setNameOfDirectory(String repositoryName) {
+        //Enter name of repository
         wait.until(ExpectedConditions.elementToBeClickable(By.id("repository_name")));
-        driver.findElement(By.id("repository_name")).sendKeys("TestRepository");
+        driver.findElement(By.id("repository_name")).sendKeys(repositoryName);
     }
 
-    public void setCheckboxes() {
-        //Checkboxes
-        driver.findElement(By.id("repository_auto_init")).click();
-        driver.findElement(By.id("repository_gitignore_template_toggle")).click();
-        driver.findElement(By.xpath("//*[@id=\"new_repository\"]/div[6]/div[4]/div[2]/span[2]/details/summary")).click();
-        driver.findElement(By.xpath("//*[@id=\"new_repository\"]/div[6]/div[4]/div[2]/span[2]/details/details-menu/div[3]/div[1]/label[52]/span")).click();
+    public void setCheckbox(String id) {
+        //Set checkbox
+        wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
+        driver.findElement(By.id(id)).click();
     }
 
-    public void submit() {
-        //Submit create repository
-        driver.findElement(By.xpath("//*[@id=\"new_repository\"]/div[6]/button")).click();
+    public void setDropDownMenu(String boxXpath, String lineXpath) {
+        driver.findElement(By.xpath(boxXpath)).click();
+        driver.findElement(By.xpath(lineXpath)).click();
+    }
+
+    public void submit(String xpath) {
+        //Click submit bottom
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+        driver.findElement(By.xpath(xpath)).click();
     }
 
     public void delete() {
@@ -62,10 +65,18 @@ public class MyDriver {
         //Submit delete
         driver.findElement(By.xpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/p/input")).sendKeys(
                 driver.findElement(By.xpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/p[2]/strong")).getText());
-        driver.findElement(By.xpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/button/span[1]")).click();
+
+        submit("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/button/span[1]");
     }
 
     public void close() {
         driver.close();
     }
+
+//    public boolean checkTextareaNotEmpty(String id) {
+//        WebElement textarea = driver.findElement(By.id(id));
+//        String textInsideTextarea = textarea.getAttribute("value");
+//
+//        if (driver.findElement(By.id(id)))
+//    }
 }
