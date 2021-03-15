@@ -1,6 +1,6 @@
 public enum Browsers {
     CHROME("webdriver.chrome.driver", "C:\\chromedriver.exe"),
-    EDGE("webdriver.edge.driver", "C://msedgedriver.exe");
+    EDGE("webdriver.edge.driver", "C:\\msedgedriver.exe");
 
 
     private final String driver;
