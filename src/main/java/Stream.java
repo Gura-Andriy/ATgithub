@@ -1,4 +1,10 @@
-public class Stream implements Runnable {
+public class Stream extends Thread {
+    private String repositoryName;
+
+    public Stream(String repositoryName) {
+        this.repositoryName = repositoryName;
+    }
+
     @Override
     public void run() {
         MyDriver driver = new MyDriver();
@@ -12,7 +18,7 @@ public class Stream implements Runnable {
         driver.createNewDirectory();
 
         //Create repository page
-        driver.setNameOfDirectory("TestRepository");
+        driver.setNameOfDirectory(repositoryName);
 
         driver.setCheckbox("repository_auto_init");
         driver.setCheckbox("repository_gitignore_template_toggle");
