@@ -1,13 +1,15 @@
 public class Stream extends Thread {
     private String repositoryName;
+    private Browsers browser;
 
-    public Stream(String repositoryName) {
+    public Stream(Browsers browser, String repositoryName) {
+        this.browser = browser;
         this.repositoryName = repositoryName;
     }
 
     @Override
     public void run() {
-        MyDriver driver = new MyDriver();
+        MyDriver driver = new MyDriver(browser);
         LoginProperty loginProperty = new LoginProperty();
 
         //Login on Github

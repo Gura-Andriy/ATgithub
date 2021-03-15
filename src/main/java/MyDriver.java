@@ -2,19 +2,31 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 public class MyDriver {
-    public final WebDriver driver = new ChromeDriver();
-    public final WebDriverWait wait = new WebDriverWait(driver, 10);
+    public final WebDriver driver;
+    public final WebDriverWait wait;
 
     public MyDriver() {
+        driver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
         driver.manage().window().maximize();
         driver.get("https://github.com");
+        wait = new WebDriverWait(driver, 10);
+    }
+
+    public MyDriver(Browsers brouser) {
+        if (brouser == Browsers.EDGE) driver = new EdgeDriver();
+        else driver = new ChromeDriver();
+        System.setProperty(brouser.getDriver(), brouser.getAddress());
+        this.driver.manage().window().maximize();
+        this.driver.get("https://github.com");
+        wait = new WebDriverWait(driver, 10);
     }
 
     public void logIn(String username, String password) {
