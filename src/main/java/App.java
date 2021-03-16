@@ -7,9 +7,10 @@ public class App {
 //        edge.start();
 
         Stream chrome1 = new Stream(Browsers.CHROME, "TestRepositoryChrome1");
+        Stream chrome2 = new Stream(Browsers.CHROME, "TestRepositoryChrome2");
 
         chrome1.start();
-
+        chrome2.start();
 
 
 

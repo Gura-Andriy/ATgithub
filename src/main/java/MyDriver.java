@@ -57,7 +57,6 @@ public class MyDriver {
         driver.findElement(By.id(id)).click();
 
         log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
-
     }
 
     public void setDropDownMenu(String boxXpath, String lineXpath) {
@@ -65,7 +64,6 @@ public class MyDriver {
         driver.findElement(By.xpath(lineXpath)).click();
 
         log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
-
     }
 
     public void submit(String xpath) {
@@ -75,7 +73,6 @@ public class MyDriver {
         driver.findElement(By.xpath(xpath)).click();
 
         log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
-
     }
 
     public void submit(String xpath, boolean checkTextarea) {
@@ -85,7 +82,6 @@ public class MyDriver {
         }
 
         log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
-
     }
 
     public void submitById(String id) {
@@ -94,7 +90,6 @@ public class MyDriver {
         driver.findElement(By.id(id)).click();
 
         log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
-
     }
 
     public void delete() {
@@ -102,7 +97,6 @@ public class MyDriver {
         driver.findElement(By.xpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/summary")).click();
 
         log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
-
     }
 
     public void submitDelete() {
@@ -113,7 +107,6 @@ public class MyDriver {
                 checkTextareaNotEmptyByXpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/p/input"));
 
         log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
-
     }
 
     public void close() {
@@ -139,6 +132,5 @@ public class MyDriver {
         driver.findElement(By.xpath(xpath)).sendKeys(text);
 
         log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
-
     }
 }

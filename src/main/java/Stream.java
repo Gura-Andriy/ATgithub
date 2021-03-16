@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class Stream extends Thread {
     private String repositoryName;
     private Browsers browser;
