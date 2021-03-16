@@ -1,12 +1,10 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class MyDriver {
@@ -37,28 +35,37 @@ public class MyDriver {
         driver.findElement(By.name("login")).sendKeys(username);
         driver.findElement(By.name("password")).sendKeys(password);
 
-
-//        log.writeLog(true, "log in");
-
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
     }
 
     public void createNewDirectory() {
         driver.findElement(By.linkText("New")).click();
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
     }
 
     public void setNameOfDirectory(String repositoryName) {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("repository_name")));
         driver.findElement(By.id("repository_name")).sendKeys(repositoryName);
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 
     public void setCheckbox(String id) {
         wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
         driver.findElement(By.id(id)).click();
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 
     public void setDropDownMenu(String boxXpath, String lineXpath) {
         driver.findElement(By.xpath(boxXpath)).click();
         driver.findElement(By.xpath(lineXpath)).click();
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 
     public void submit(String xpath) {
@@ -66,6 +73,9 @@ public class MyDriver {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         driver.findElement(By.xpath(xpath)).click();
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 
     public void submit(String xpath, boolean checkTextarea) {
@@ -73,17 +83,26 @@ public class MyDriver {
         if (checkTextarea) {
             submit(xpath);
         }
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 
     public void submitById(String id) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
         driver.findElement(By.id(id)).click();
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 
     public void delete() {
         driver.findElement(By.xpath("//*[@id=\"js-repo-pjax-container\"]/div[1]/nav/ul/li[9]/a/span[1]")).click();
         driver.findElement(By.xpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/summary")).click();
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 
     public void submitDelete() {
@@ -92,10 +111,16 @@ public class MyDriver {
 
         submit("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/button/span[1]",
                 checkTextareaNotEmptyByXpath("//*[@id=\"options_bucket\"]/div[10]/ul/li[4]/details/details-dialog/div[3]/form/p/input"));
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 
     public void close() {
         driver.close();
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+        log.close();
     }
 
     public boolean checkTextareaNotEmptyById(String id) {
@@ -112,5 +137,8 @@ public class MyDriver {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         driver.findElement(By.xpath(xpath)).clear();
         driver.findElement(By.xpath(xpath)).sendKeys(text);
+
+        log.writeLog(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 }

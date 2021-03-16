@@ -12,9 +12,6 @@ public class App {
 
 
 
-        Logging log = new Logging("log.txt");
-        log.writeLog(true, "test");
-
 
     }
 }
