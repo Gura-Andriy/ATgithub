@@ -13,17 +13,17 @@ public class MyDriver {
     Logging log = new Logging("log.txt");
 
     public MyDriver() {
-        driver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://github.com");
         wait = new WebDriverWait(driver, 10);
     }
 
     public MyDriver(Browsers brouser) {
+        System.setProperty(brouser.getDriver(), brouser.getAddress());
         if (brouser == Browsers.EDGE) driver = new EdgeDriver();
         else driver = new ChromeDriver();
-        System.setProperty(brouser.getDriver(), brouser.getAddress());
         this.driver.manage().window().maximize();
         this.driver.get("https://github.com");
         wait = new WebDriverWait(driver, 10);
