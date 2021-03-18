@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,6 +24,7 @@ public class MyDriver {
     public MyDriver(Browsers brouser) {
         System.setProperty(brouser.getDriver(), brouser.getAddress());
         if (brouser == Browsers.EDGE) driver = new EdgeDriver();
+        else if (brouser == Browsers.TOR) driver = new FirefoxDriver();
         else driver = new ChromeDriver();
         this.driver.manage().window().maximize();
         this.driver.get("https://github.com");
